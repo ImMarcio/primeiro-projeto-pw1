@@ -1,0 +1,17 @@
+.mat-card-simples{
+  max-width: 300px;
+  background-color: aliceblue;
+  margin-top: 10px;
+
+}
+
+.mat-form-principal{
+  margin-left: 5px;
+
+}
+
+.mat-card-principal{
+  max-width: 500px;
+  background-color: #521ec9;
+  margin-top: 10px;
+}
