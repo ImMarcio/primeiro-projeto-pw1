@@ -17,6 +17,7 @@ export class AppComponent {
   produto: Produto;
   selectProduto:Produto | undefined;
   selectCliente:Cliente | undefined
+  isEdit:boolean = true;
 
 
 
@@ -40,6 +41,16 @@ export class AppComponent {
     }
   }
 
+  editarCliente(clienteAEditar:Cliente){
+
+    const indice = this.clientes.findIndex(cliente => cliente.cpf === clienteAEditar.cpf)
+  if(indice !== -1){
+    this.clientes[indice] = this.cliente;
+  }
+
+
+  }
+
     inserirProduto(): void{
       this.produto.id = this.gerarId();
       this.produtos.push(this.produto);
@@ -56,7 +67,7 @@ export class AppComponent {
   comprarProduto(){
     if (this.selectProduto  instanceof Produto) {
       this.selectCliente?.inserirProdutoComprado(this.selectProduto);
-      
+
     }
   }
 

@@ -13,6 +13,7 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import {MatSelectModule} from "@angular/material/select";
 import {MatTableModule} from "@angular/material/table";
 import {MatListModule} from "@angular/material/list";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {MatListModule} from "@angular/material/list";
     MatSelectModule,
     ReactiveFormsModule,
     MatTableModule,
-    MatListModule
+    MatListModule,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

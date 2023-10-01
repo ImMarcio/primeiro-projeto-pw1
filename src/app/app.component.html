@@ -1,6 +1,9 @@
 <body>
-<div class="container-cliente">
+<div class="main">
+
+
   <!-- Inserir e remover cliente -->
+  <div class="card-1">
 <mat-card class="mat-card-cliente">
 <mat-card-header>
   <mat-card-title>Inserir Cliente</mat-card-title>
@@ -22,39 +25,41 @@
     </mat-form-field>
   </mat-card-content>
   <mat-card-footer>
-      <button  mat-fab  color="primary" (click)="inserirCliente()">
+      <button  mat-fab class="buttonCard" color="primary" (click)="inserirCliente()">
         <mat-icon>person_add</mat-icon>
       </button>
   </mat-card-footer>
 </mat-card>
-  <mat-card class="mat-card-simples" *ngFor="let cliente of clientes">
-    <mat-card-header>
-      <mat-card-title>
-        <mat-icon>person</mat-icon>{{cliente.nome}}
-        <button (click)="removerCliente(cliente)"><mat-icon>delete</mat-icon></button>
-      </mat-card-title>
-      <mat-card-subtitle *ngIf="cliente.cpf">CPF:{{cliente.cpf}} Idade:{{cliente.idade }} </mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <h5>Produtos Comprados</h5>
-      <mat-list>
-        <mat-list-item *ngFor="let produtoComprado of cliente.produtosComprados">
-          Nome:{{produtoComprado.nome}} - Preco: R${{produtoComprado.preco}}
-        </mat-list-item>
 
-      </mat-list>
-    </mat-card-content>
-  </mat-card>
-</div>
+      <div class="ngfor-container">
+      <mat-card class="mat-card-simples" *ngFor="let cliente of clientes">
+        <mat-card-header>
+          <mat-card-title class="dadosDoCliente">
+            <mat-icon>person</mat-icon>{{cliente.nome}}
+            <button mat-button class="buttonCard-usuario" (click)="removerCliente(cliente)"><mat-icon>delete</mat-icon></button>
+            <button  mat-button class="buttonCard-usuario" (click)="editarCliente(cliente)"><mat-icon>edit</mat-icon></button>
+          </mat-card-title>
+          <mat-card-subtitle *ngIf="cliente.cpf">CPF:{{cliente.cpf}} Idade:{{cliente.idade }} </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <h5>Produtos Comprados</h5>
+          <mat-list>
+            <mat-list-item *ngFor="let produtoComprado of cliente.produtosComprados">
+              Nome:{{produtoComprado.nome}} - Preco: R${{produtoComprado.preco}}
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+      </div>
+  </div>
 
-<div class="container">
+<div class="card-2">
   <!-- Inserir e remover produtos -->
 <mat-card class="mat-card-produto">
   <mat-card-header>
     <mat-card-title>Inserir Produto</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-
     <mat-form-field class="mat-form-principal"  appearance="fill">
       <mat-label>Nome</mat-label>
       <input matInput [(ngModel)]="produto.nome" type="text" placeholder='digite o nome do produto'>
@@ -67,16 +72,19 @@
   </mat-card-content>
 
   <mat-card-footer>
-    <button  mat-fab  color="warn" (click)="inserirProduto()">
+    <button  mat-fab  class="buttonCard" color="warn" (click)="inserirProduto()">
       <mat-icon>add_business</mat-icon>
     </button>
   </mat-card-footer>
+
 </mat-card>
+
+  <div class="ngfor-container">
   <mat-card class="mat-card-simples" *ngFor="let produto of produtos">
     <mat-card-header>
       <mat-card-title>
         <mat-icon>person</mat-icon>{{produto.nome}}
-        <button (click)="removerProduto(produto)"><mat-icon>delete</mat-icon></button>
+        <button class="buttonCard" (click)="removerProduto(produto)"><mat-icon>delete</mat-icon></button>
       </mat-card-title>
 
       <mat-card-subtitle *ngIf="produto.id">{{produto.nome}}-{{produto.preco}}</mat-card-subtitle>
@@ -84,54 +92,40 @@
     <mat-card-content>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut molestie urna.
       Donec a elit ac dui gravida facilisis. Phasellus elementum nulla tellus,</mat-card-content>
   </mat-card>
+  </div>
+</div>
+
 
   <!-- Select para comprar produtos-->
   <mat-card class="mat-card-principal">
     <mat-card-header>
         <mat-card-title>Comprar produtos</mat-card-title>
   </mat-card-header>
-  <mat-card-content>
-    <h4>Produtos</h4>
-        <mat-form-field>
-          <mat-label>Produto</mat-label>
-          <mat-select  [(value)]="selectProduto">
-            <mat-option *ngFor="let produto of produtos" [value]="produto">{{produto.nome}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <h4>Clientes</h4>
-        <mat-form-field>
-          <mat-label>cliente</mat-label>
-          <mat-select  [(value)]="selectCliente">
-            <mat-option *ngFor="let cliente of clientes" [value]="cliente">{{cliente.nome}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <button mat-fab (click)="comprarProduto()">
-          <mat-icon>shopping_cart</mat-icon>
-        </button>
-  </mat-card-content>
-  </mat-card>
-
-    <!-- Lista de itens comprados-->
-  <mat-card class="mat-card-simples" *ngFor="let cliente of clientes">
-    <mat-card-header>
-      <mat-card-title>
-        <mat-icon>person</mat-icon>{{cliente.nome}}
-      </mat-card-title>
-
-      <mat-card-subtitle *ngIf="cliente.cpf">  </mat-card-subtitle>
-    </mat-card-header>
-  </mat-card>
-
-<!-- for para listar os usuários novamente, mas com seus repectivos produtos comprados-->
-  <mat-card>
     <mat-card-content>
-        <mat-card *ngFor="let produto of cliente.produtosComprados">
-          <mat-card-content>{{cliente.nome}} - {{produto.nome}}</mat-card-content>
-        </mat-card>
-      </mat-card-content>
+      <h4>Produtos</h4>
+          <mat-form-field>
+            <mat-label>Produto</mat-label>
+            <mat-select  [(value)]="selectProduto">
+              <mat-option *ngFor="let produto of produtos" [value]="produto">{{produto.nome}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <h4>Clientes</h4>
+          <mat-form-field>
+            <mat-label>cliente</mat-label>
+            <mat-select  [(value)]="selectCliente">
+              <mat-option *ngFor="let cliente of clientes" [value]="cliente">{{cliente.nome}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </mat-card-content>
+    <mat-card-footer>
+      <button mat-fab class="buttonCard-select" (click)="comprarProduto()">
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
+    </mat-card-footer>
   </mat-card>
+
+
 </div>
+
 </body>
-
-

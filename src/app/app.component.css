@@ -1,10 +1,18 @@
-
-
-div.container{
-
-  margin: 20px; /* Espaço entre os contêineres */
+editClass{
+  background-color: forestgreen;
 }
 
+.main{
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: center;
+}
+
+.ngfor-container {
+  display: flex;
+  flex-direction: column;
+}
 
 .mat-card-simples{
   max-width: 300px;
@@ -12,8 +20,7 @@ div.container{
   background-color: aliceblue;
   margin-top: 10px;
   display: flex;
-  flex-direction: column; /* Lista vertical */
-
+  flex-direction: column;
 
 }
 
@@ -22,28 +29,38 @@ div.container{
 }
 
 .mat-card-principal{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   max-width: 500px;
   background-color: #521ec9;
   margin-top: 10px;
   margin-right: 10px;
-  max-height: 275px;
+  height: 350px;
 }
 
-
 .mat-card-cliente{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   max-width: 500px;
   background-color: #521ec9;
-  margin-top: 10px;
-  margin-right: 10px;
-  max-height: 275px;
+  height: 375px;
+  margin: 10px;
+}
+.mat-card-cliente button{
+
 }
 
 .mat-card-produto{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   max-width: 500px;
   background-color: #ad2d2d;
   margin-top: 10px;
   margin-right: 10px;
-  max-height: 200px;
+  height: 275px;
 }
 
 
@@ -55,4 +72,12 @@ div.container{
 .mat-card-simples {
   width: 80%; /* Largura desejada */
   margin-bottom: 10px; /* Espaço entre os cartões simples */
+}
+
+
+
+.dadosDoCliente n:nth-child(3){
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
