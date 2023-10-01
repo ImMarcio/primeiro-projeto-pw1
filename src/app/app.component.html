@@ -1,5 +1,5 @@
 <body>
-<div class="container">
+<div class="container-cliente">
   <!-- Inserir e remover cliente -->
 <mat-card class="mat-card-cliente">
 <mat-card-header>
@@ -8,37 +8,37 @@
   <mat-card-content>
     <mat-form-field class="mat-form-principal"  appearance="fill">
       <mat-label>Nome</mat-label>
-      <input matInput [(ngModel)]="usuario.nome" placeholder="Digite seu nome" type="text">
+      <input matInput [(ngModel)]="cliente.nome" placeholder="Digite seu nome" type="text">
     </mat-form-field>
 
     <mat-form-field class="mat-form-principal"  appearance="fill">
       <mat-label>CPF</mat-label>
-     <input matInput [(ngModel)]="usuario.cpf" type="text" placeholder="digite o cpf">
+     <input matInput [(ngModel)]="cliente.cpf" type="text" placeholder="digite o cpf">
     </mat-form-field>
 
     <mat-form-field class="mat-form-principal" appearance="fill">
       <mat-label>Idade</mat-label>
-     <input matInput [(ngModel)]="usuario.idade" type="number" placeholder="digite a idade">
+     <input matInput [(ngModel)]="cliente.idade" type="number" placeholder="digite a idade">
     </mat-form-field>
   </mat-card-content>
   <mat-card-footer>
-      <button  mat-fab  color="primary" (click)="inserirUsuario()">
+      <button  mat-fab  color="primary" (click)="inserirCliente()">
         <mat-icon>person_add</mat-icon>
       </button>
   </mat-card-footer>
 </mat-card>
-  <mat-card class="mat-card-simples" *ngFor="let usuario of usuarios">
+  <mat-card class="mat-card-simples" *ngFor="let cliente of clientes">
     <mat-card-header>
       <mat-card-title>
-        <mat-icon>person</mat-icon>{{usuario.nome}}
-        <button (click)="removerUsuario(usuario)"><mat-icon>delete</mat-icon></button>
+        <mat-icon>person</mat-icon>{{cliente.nome}}
+        <button (click)="removerCliente(cliente)"><mat-icon>delete</mat-icon></button>
       </mat-card-title>
-      <mat-card-subtitle *ngIf="usuario.cpf">CPF:{{usuario.cpf}} Idade:{{usuario.idade }} </mat-card-subtitle>
+      <mat-card-subtitle *ngIf="cliente.cpf">CPF:{{cliente.cpf}} Idade:{{cliente.idade }} </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <h5>Produtos Comprados</h5>
       <mat-list>
-        <mat-list-item *ngFor="let produtoComprado of usuario.produtosComprados">
+        <mat-list-item *ngFor="let produtoComprado of cliente.produtosComprados">
           Nome:{{produtoComprado.nome}} - Preco: R${{produtoComprado.preco}}
         </mat-list-item>
 
@@ -48,7 +48,6 @@
 </div>
 
 <div class="container">
-
   <!-- Inserir e remover produtos -->
 <mat-card class="mat-card-produto">
   <mat-card-header>
@@ -95,7 +94,7 @@
     <h4>Produtos</h4>
         <mat-form-field>
           <mat-label>Produto</mat-label>
-          <mat-select  [(value)]="selectValue">
+          <mat-select  [(value)]="selectProduto">
             <mat-option *ngFor="let produto of produtos" [value]="produto">{{produto.nome}}</mat-option>
           </mat-select>
         </mat-form-field>
@@ -103,8 +102,8 @@
         <h4>Clientes</h4>
         <mat-form-field>
           <mat-label>cliente</mat-label>
-          <mat-select  [(value)]="selectValue2">
-            <mat-option *ngFor="let usuario of usuarios" [value]="usuario">{{usuario.nome}}</mat-option>
+          <mat-select  [(value)]="selectCliente">
+            <mat-option *ngFor="let cliente of clientes" [value]="cliente">{{cliente.nome}}</mat-option>
           </mat-select>
         </mat-form-field>
         <button mat-fab (click)="comprarProduto()">
@@ -114,21 +113,21 @@
   </mat-card>
 
     <!-- Lista de itens comprados-->
-  <mat-card class="mat-card-simples" *ngFor="let usuario of usuarios">
+  <mat-card class="mat-card-simples" *ngFor="let cliente of clientes">
     <mat-card-header>
       <mat-card-title>
-        <mat-icon>person</mat-icon>{{usuario.nome}}
+        <mat-icon>person</mat-icon>{{cliente.nome}}
       </mat-card-title>
 
-      <mat-card-subtitle *ngIf="usuario.cpf">  </mat-card-subtitle>
+      <mat-card-subtitle *ngIf="cliente.cpf">  </mat-card-subtitle>
     </mat-card-header>
   </mat-card>
 
 <!-- for para listar os usuários novamente, mas com seus repectivos produtos comprados-->
   <mat-card>
     <mat-card-content>
-        <mat-card *ngFor="let produto of usuario.produtosComprados">
-          <mat-card-content>{{usuario.nome}} - {{produto.nome}}</mat-card-content>
+        <mat-card *ngFor="let produto of cliente.produtosComprados">
+          <mat-card-content>{{cliente.nome}} - {{produto.nome}}</mat-card-content>
         </mat-card>
       </mat-card-content>
   </mat-card>

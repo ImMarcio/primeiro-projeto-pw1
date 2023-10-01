@@ -22,7 +22,6 @@ div.container{
 }
 
 .mat-card-principal{
-
   max-width: 500px;
   background-color: #521ec9;
   margin-top: 10px;
@@ -32,7 +31,6 @@ div.container{
 
 
 .mat-card-cliente{
-
   max-width: 500px;
   background-color: #521ec9;
   margin-top: 10px;
@@ -41,7 +39,6 @@ div.container{
 }
 
 .mat-card-produto{
-
   max-width: 500px;
   background-color: #ad2d2d;
   margin-top: 10px;

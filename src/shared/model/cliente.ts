@@ -1,7 +1,7 @@
 import {Produto} from "./produto";
 
 
-export class Usuario {
+export class Cliente {
   get nome(): string {
     return this._nome;
   }
@@ -30,9 +30,7 @@ export class Usuario {
     return this._produtosComprados;
   }
 
-  set produtosComprados(value: Array<Produto>) {
-    this._produtosComprados = value;
-  }
+
   private _nome: string = '';
   private _cpf: string = '';
   private _idade: number = 0;

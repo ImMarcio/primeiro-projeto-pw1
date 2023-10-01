@@ -1,11 +1,8 @@
 import {Component} from '@angular/core';
-import {Usuario} from '../shared/model/usuario';
+import {Cliente} from '../shared/model/cliente';
 import {Produto} from "../shared/model/produto";
-import {FormControl, Validators} from "@angular/forms";
-interface Food {
-  value: string;
-  viewValue: string;
-}
+
+
 
 @Component({
   selector: 'app-root',
@@ -14,38 +11,32 @@ interface Food {
 })
 
 export class AppComponent {
-  titulo = 'First Project';
-  usuario: Usuario;
-  usuarios: Array<Usuario>;
+  cliente: Cliente;
+  clientes: Array<Cliente>;
   produtos: Array<Produto>;
   produto: Produto;
-  produtoSelecionado = new FormControl<Produto | null>(null, Validators.required);
-  usuarioSelecionado = new FormControl<Usuario | null>(null, Validators.required);
+  selectProduto:Produto | undefined;
+  selectCliente:Cliente | undefined
 
-  selectValue:Produto | undefined;
-  selectValue2:Usuario | undefined
 
-  selectProduct: Produto | undefined;
-  selectUser: Usuario | undefined;
 
   constructor() {
-    this.usuario = new Usuario();
-    this.usuarios = new Array<Usuario>();
+    this.cliente = new Cliente();
+    this.clientes = new Array<Cliente>();
     this.produto = new Produto();
     this.produtos = new Array<Produto>();
   }
 
-  inserirUsuario(): void {
-    this.usuarios.push(this.usuario);
-    this.usuario = new Usuario();
+  inserirCliente(): void {
+    this.clientes.push(this.cliente);
+    this.cliente = new Cliente();
     this.produto = new Produto();
-
-
   }
-  removerUsuario(cliente:Usuario): void {
-    const idxRemover = this.usuarios.findIndex(usuario => cliente.cpf === usuario.cpf);
+
+  removerCliente(clienteARemover:Cliente): void {
+    const idxRemover = this.clientes.findIndex(cliente => cliente.cpf === clienteARemover.cpf);
     if(idxRemover >= 0){
-      this.usuarios.splice(idxRemover,1);
+      this.clientes.splice(idxRemover,1);
     }
   }
 
@@ -54,6 +45,7 @@ export class AppComponent {
       this.produtos.push(this.produto);
       this.produto = new Produto();
     }
+
   removerProduto(produtoCliente:Produto): void {
     const idxRemover = this.produtos.findIndex(produto => produto.id === produtoCliente.id);
     if(idxRemover >= 0){
@@ -62,11 +54,10 @@ export class AppComponent {
   }
 
   comprarProduto(){
-    if (this.selectValue instanceof Produto) {
-      this.selectValue2?.inserirProdutoComprado(this.selectValue);
+    if (this.selectProduto  instanceof Produto) {
+      this.selectCliente?.inserirProdutoComprado(this.selectProduto);
+      
     }
-
-
   }
 
 
@@ -77,7 +68,6 @@ export class AppComponent {
       return this.produtos.length + 1;
     }
   }
-
 
 
 }
